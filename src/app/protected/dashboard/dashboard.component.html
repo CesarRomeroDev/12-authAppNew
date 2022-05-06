@@ -1,1 +1,13 @@
-<p>dashboard works!</p>
+<h1>Dashboard</h1>
+<hr>
+
+<p>
+  Esta página sólo funciona si estás autenticado
+</p>
+
+<h4>User info</h4>
+<pre>{{ usuario | json }}</pre><!--(26)hacemos login y tenemos la informacion del usuario.(termina seccion)(inicia en el login.compont.ts)-->
+
+<button (click)="logout()">
+  Logout
+</button>
