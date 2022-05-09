@@ -32,7 +32,7 @@ export class LoginComponent {
     const { email, password } = this.miFormulario.value   //extraemos email y password de auth.service(12)
 
     this.authServices.login( email, password ).subscribe( ok => {   //mandamos el imail y pasword y nos subcribimos(13)
-       console.log(ok);   //HACEMOS LA PRUEBA, debemos de obtene la respuesta al hacer click en login en consola,(14) si mandamos un correo que no es valido manda error desde el back. vamos a nuestras interfaces.ts
+      //  console.log(ok);   //HACEMOS LA PRUEBA, debemos de obtene la respuesta al hacer click en login en consola,(14) si mandamos un correo que no es valido manda error desde el back. vamos a nuestras interfaces.ts
       if (ok === true) {   //(22)hacer if y vamos a dashboar.component.ts
         this.router.navigateByUrl('/dashboard')
       }else{

@@ -23,6 +23,29 @@ export class AuthService {
   ) { }
 
   /**
+   * Crear Usuario
+   * @param name nombre
+   * @param email correo
+   * @param password pass
+   * @returns
+   */
+  registro(name: string, email: string, password: string){
+    const url = `${ this.baseUrl }/auth/new`;
+    const body = { email, password, name };
+
+    return this.http.post<AuthResponse>(url, body)
+      .pipe(
+        tap( resp => {
+          if ( resp.ok ) {
+            localStorage.setItem( 'token', resp.token! );
+          }
+        }),
+        map(resp => resp.ok),
+      catchError( err => of(err.error.msj))
+      );
+  }
+
+  /**
    * Obtener Usuario
    * @param email usuario
    * @param password usuario
@@ -36,11 +59,7 @@ export class AuthService {
     .pipe(    //(18) mutacion de la data
       tap( resp => {    //(21)hacemos if , terminando if vamos a login.component.ts
         if ( resp.ok ) {
-          localStorage.setItem('token', resp.token!)    //29 para no perder informacion del usuario al recargar pagina
-          this._usuario = {   //para mantener la informacion del usuario y capturarla
-            name: resp.name!,
-            uid: resp.uid!
-          }
+          localStorage.setItem('token', resp.token!);   //29 para no perder informacion del usuario al recargar pagina
         }
        } ),
       map( resp => resp.ok ),      //(19)Mutar la respuesta, solo con el ok
@@ -62,7 +81,8 @@ export class AuthService {
           localStorage.setItem('token', resp.token!)    //(37) no estaba el localStorage
           this._usuario = {   //para mantener la informacion del usuario y capturarla
             name: resp.name!,
-            uid: resp.uid!
+            uid: resp.uid!,
+            email: resp.email!
           }                                              //(37)localStorage
           return resp.ok;
         }),
@@ -72,4 +92,8 @@ export class AuthService {
   }
   //------------------------------------------------------- vamos a CREAR UN GUARD escibimos el siguente comando en consola : ng g g guard/validarToken --skip-Tests
   //seleccionamos CanActivate y CanLoad y ingresamos al archivo creado.
+
+  logout(){   //(38) borrar el localstorage vamos al archivo dashboar.component.ts
+    localStorage.clear();
+  }
 }
