@@ -23,7 +23,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{
+    useHash: false   //configuracion despues de copiar la carpeta al servidor
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

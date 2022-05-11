@@ -20,3 +20,8 @@ Todos los cambios notables realizados en estre proyecto se agregarán a este arc
     - [09-05-2022]
     - Inicio Sección 26 Desplegar backend y frontend a producción
     - Lecciones 401 a 403
+
+### Added
+    - [10-05-2022]
+    - Fín de Sección 26 Desplegar backend y frontend a producción
+    - Lecciones 401 a 403
